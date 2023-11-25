@@ -1,36 +1,19 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const doctorInfoSchema = new Schema({
-    doctorNumber: [{type: Number, required: true}],
-    favoriteSaying: String,
-    actor: [{type: String, required: true}],
-});
-
-const companionInfoSchema = new Schema({
-    name: [{type: String, required: true}],
-    actor: [{type: String, required: true}],
-});
-
-const adversaryInfoSchema = new Schema({
-    name: [{type: String, required: true}],
-    planetOfOrigin: [String],
-    actor: [String],
-});
-
-const otherCharInfoSchema = new Schema({
-    name: [{type: String, required: true}],
-    actor: [String],
-});
-
-
 const characterSchema = new Schema({
     name: String,
-    Actor: {type: String, required: true},
-    quotes: [{type: Schema.Types.ObjectId, ref: 'Quote'}],
+    image: String,
+    actor: {type: String, required: true},
     charType: {type: String, enum: ['DOCTOR', 'COMPANION', 'ADVERSARY', 'OTHER'], required: true},
-    doctorInfo: [doctorInfoSchema],
-    companionInfo: [companionInfoSchema],
-    adversaryInfo: [adversaryInfoSchema],
-    otherCharInfo: [otherCharInfoSchema],
+    planetOfOrigin: String,
+    favoriteSaying: String,
+    isDoctor: {type: Boolean, required: true},
+    doctorNumber: Number,
+    specialDoctor: {type: String},
+    quotes: [{type: Schema.Types.ObjectId, ref: 'Quote'}],
 });
+
+const Character = mongoose.model('Character', characterSchema);
+
+module.exports = Character;

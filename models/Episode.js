@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const quoteSchema = new Schema({
     quote: {type: String, required: true},
-    speaker: {type: String, required: true},
+    speaker: [{type: Schema.Types.ObjectId, ref: 'Character', required: true}],
     episode: [{type: mongoose.Schema.Types.ObjectId, ref:'Episode'}]
 
 });

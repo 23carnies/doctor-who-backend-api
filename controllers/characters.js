@@ -15,7 +15,7 @@ module.exports = {
     
     function index(req,res) {
         Character.find({})
-        .then(characters => {res.json(character)})
+        .then(characters => {res.json(characters)})
         .catch(err => res.status(422).json(err));
     };
 
